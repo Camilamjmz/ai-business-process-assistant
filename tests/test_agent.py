@@ -3,6 +3,7 @@ from types import SimpleNamespace
 
 import pytest
 from fastapi.testclient import TestClient
+from google.genai import errors
 from google.genai import types
 
 from app.agents.business_agent import (
@@ -158,8 +159,31 @@ def test_tool_activity_trace_contains_sanitized_events() -> None:
     assert result["activity"][1]["tool_name"] == "get_sales_summary"
 
 
-def test_upstream_errors_never_include_api_key() -> None:
+def test_upstream_errors_never_include_api_key(monkeypatch, caplog) -> None:
     secret = "super-secret-test-key"
+    monkeypatch.setenv("GEMINI_API_KEY", secret)
     with pytest.raises(AgentUpstreamError) as captured:
         run_business_agent("Hello", client=FakeClient([RuntimeError(secret)]))
     assert secret not in str(captured.value)
+    assert secret not in caplog.text
+
+
+@pytest.mark.parametrize(
+    ("code", "status", "category"),
+    [
+        (429, "RESOURCE_EXHAUSTED", "quota_exhausted"),
+        (503, "UNAVAILABLE", "service_unavailable"),
+        (404, "NOT_FOUND", "model_unavailable"),
+        (403, "PERMISSION_DENIED", "authentication_or_permission"),
+        (400, "INVALID_ARGUMENT", "invalid_request"),
+    ],
+)
+def test_google_errors_are_logged_safely(caplog, code, status, category) -> None:
+    upstream = errors.APIError(code, {"error": {"status": status, "message": "Safe diagnostic message"}})
+    with pytest.raises(AgentUpstreamError, match="Gemini service request failed"):
+        run_business_agent("Hello", client=FakeClient([upstream]), model="gemini-test-model")
+
+    assert f"exception_class=APIError code={code} status={status}" in caplog.text
+    assert f"category={category}" in caplog.text
+    assert "model=gemini-test-model" in caplog.text
+    assert "message=Safe diagnostic message" in caplog.text

@@ -1,6 +1,8 @@
 """Bounded Gemini agent loop over the deterministic tool registry."""
 
+import logging
 import os
+import re
 from time import perf_counter
 from typing import Any
 
@@ -13,6 +15,15 @@ from app.agents.tool_registry import TOOL_REGISTRY, ToolRegistryError, get_tool_
 DEFAULT_MODEL = "gemini-3.6-flash"
 MAX_MESSAGE_LENGTH = 4000
 MAX_TOOL_ROUNDS = 5
+
+logger = logging.getLogger(__name__)
+
+_SENSITIVE_ERROR_PATTERNS = (
+    re.compile(r"(?i)(authorization\s*[:=]\s*bearer\s+)[^\s,;]+"),
+    re.compile(r"(?i)((?:api[_-]?key|token|password|secret)\s*[:=]\s*)[^\s,;]+"),
+    re.compile(r"AIza[0-9A-Za-z_-]{20,}"),
+    re.compile(r"(?i)([?&](?:key|api_key|access_token)=)[^&\s]+"),
+)
 
 
 class AgentConfigurationError(RuntimeError):
@@ -52,10 +63,53 @@ def _tool_config() -> types.GenerateContentConfig:
     )
 
 
+def _sanitize_upstream_message(exc: Exception) -> str:
+    """Return bounded Google error text without credentials or response payloads."""
+    message = getattr(exc, "message", None)
+    if not isinstance(message, str) or not message.strip():
+        return "Upstream request failed"
+
+    sanitized = " ".join(message.split())
+    configured_key = os.getenv("GEMINI_API_KEY")
+    if configured_key:
+        sanitized = sanitized.replace(configured_key, "[REDACTED]")
+    for pattern in _SENSITIVE_ERROR_PATTERNS:
+        sanitized = pattern.sub(lambda match: f"{match.group(1)}[REDACTED]" if match.lastindex else "[REDACTED]", sanitized)
+    return sanitized[:500]
+
+
+def _upstream_error_category(code: Any, status: Any) -> str:
+    normalized_status = str(status or "").upper()
+    if code == 429 or normalized_status == "RESOURCE_EXHAUSTED":
+        return "quota_exhausted"
+    if code == 503 or normalized_status == "UNAVAILABLE":
+        return "service_unavailable"
+    if code == 404 or normalized_status == "NOT_FOUND":
+        return "model_unavailable"
+    if code in (401, 403) or normalized_status in ("UNAUTHENTICATED", "PERMISSION_DENIED"):
+        return "authentication_or_permission"
+    if code == 400 or normalized_status == "INVALID_ARGUMENT":
+        return "invalid_request"
+    return "google_genai_error"
+
+
 def _generate(client: Any, contents: list[Any], model: str):
     try:
         return client.models.generate_content(model=model, contents=contents, config=_tool_config())
     except Exception as exc:
+        code = getattr(exc, "code", None)
+        if code is None:
+            code = getattr(getattr(exc, "response", None), "status_code", None)
+        status = getattr(exc, "status", None)
+        logger.error(
+            "Gemini upstream request failed: exception_class=%s code=%s status=%s category=%s model=%s message=%s",
+            type(exc).__name__,
+            code if code is not None else "unknown",
+            status if status else "unknown",
+            _upstream_error_category(code, status),
+            model,
+            _sanitize_upstream_message(exc),
+        )
         raise AgentUpstreamError("Gemini service request failed") from exc
 
 
