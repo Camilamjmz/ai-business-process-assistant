@@ -1,0 +1,11 @@
+supplier_id,supplier_name,lead_time_days,reliability_score
+SUP-001,Supplier Atlas,3,0.97
+SUP-002,Supplier Beacon,5,0.93
+SUP-003,Supplier Cedar,7,0.88
+SUP-004,Supplier Delta,9,0.91
+SUP-005,Supplier Evergreen,12,0.84
+SUP-006,Supplier Foundry,15,0.79
+SUP-007,Supplier Granite,6,0.95
+SUP-008,Supplier Harbor,10,0.86
+SUP-009,Supplier Juniper,4,0.98
+SUP-010,Supplier Keystone,14,0.82

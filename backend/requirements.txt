@@ -1,0 +1,7 @@
+fastapi==0.116.1
+uvicorn[standard]==0.35.0
+pandas==3.0.6
+numpy==2.5.3
+pytest==8.4.2
+httpx==0.28.1
+google-genai==2.24.0

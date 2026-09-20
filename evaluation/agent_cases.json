@@ -1,0 +1,22 @@
+[
+  {"id":"EVAL-001","category":"sales_summary","prompt":"What was total revenue across the full dataset?","expected_tools":["get_sales_summary"],"requires_tool":true,"expected_facts":["727,516.76"]},
+  {"id":"EVAL-002","category":"sales_summary","prompt":"How many orders and units were recorded in 2025?","expected_tools":["get_sales_summary"],"requires_tool":true,"expected_facts":["2,000","6,093"]},
+  {"id":"EVAL-003","category":"sales_summary","prompt":"What was the average order value and unique customer count?","expected_tools":["get_sales_summary"],"requires_tool":true,"expected_facts":["363.76","397"]},
+  {"id":"EVAL-004","category":"top_products","prompt":"Which five products generated the most revenue?","expected_tools":["get_top_products"],"requires_tool":true,"expected_facts":["PRD-028"]},
+  {"id":"EVAL-005","category":"top_products","prompt":"Show the top three products by revenue for January 2025.","expected_tools":["get_top_products"],"requires_tool":true},
+  {"id":"EVAL-006","category":"period_comparison","prompt":"Compare January 2025 sales with February 2025 sales.","expected_tools":["compare_sales_periods"],"requires_tool":true},
+  {"id":"EVAL-007","category":"product_sales","prompt":"How did product PRD-028 perform across the dataset?","expected_tools":["get_product_sales"],"requires_tool":true,"expected_facts":["153,212.40","360"]},
+  {"id":"EVAL-008","category":"inventory_summary","prompt":"Summarize current inventory health.","expected_tools":["get_inventory_summary"],"requires_tool":true,"expected_facts":["40","24","10","6"]},
+  {"id":"EVAL-009","category":"low_stock","prompt":"Which products currently require inventory attention?","expected_tools":["get_low_stock_products"],"requires_tool":true,"expected_facts":["PRD-003"]},
+  {"id":"EVAL-010","category":"inventory_detail","prompt":"Give me the current inventory status for every product.","expected_tools":["get_inventory_status"],"requires_tool":true},
+  {"id":"EVAL-011","category":"supplier_lookup","prompt":"Tell me about supplier SUP-001 and the products it supplies.","expected_tools":["get_supplier_information"],"requires_tool":true,"expected_facts":["Supplier Atlas","PRD-001"]},
+  {"id":"EVAL-012","category":"supplier_summary","prompt":"Compare suppliers by product coverage and inventory risk.","expected_tools":["get_suppliers_summary"],"requires_tool":true},
+  {"id":"EVAL-013","category":"reorder","prompt":"Which products should we reorder this week?","expected_tools":["get_reorder_recommendations"],"requires_tool":true,"expected_facts":["PRD-003","PRD-025","PRD-026"]},
+  {"id":"EVAL-014","category":"reorder","prompt":"What are the top three purchasing priorities based on stock, demand, and supplier risk?","expected_tools":["get_reorder_recommendations"],"requires_tool":true,"expected_facts":["PRD-003"]},
+  {"id":"EVAL-015","category":"multi_tool","prompt":"Summarize revenue and current inventory risk in one answer.","expected_tools":["get_sales_summary","get_inventory_summary"],"requires_tool":true},
+  {"id":"EVAL-016","category":"multi_tool","prompt":"Compare our highest-revenue products with the products that need reordering.","expected_tools":["get_top_products","get_reorder_recommendations"],"requires_tool":true},
+  {"id":"EVAL-017","category":"multi_tool","prompt":"Which suppliers support products currently at inventory risk?","expected_tools":["get_low_stock_products","get_suppliers_summary"],"requires_tool":true},
+  {"id":"EVAL-018","category":"capability","prompt":"What can you help me with?","expected_tools":[],"requires_tool":false},
+  {"id":"EVAL-019","category":"unsupported","prompt":"Send purchase orders to every supplier now.","expected_tools":[],"requires_tool":false},
+  {"id":"EVAL-020","category":"unsupported","prompt":"What is tomorrow's weather?","expected_tools":[],"requires_tool":false}
+]

@@ -1,0 +1,239 @@
+{
+  "generated_at": "2026-09-20T17:37:13.647738+00:00",
+  "mode": "live",
+  "model": "gemini-3.6-flash",
+  "metrics": {
+    "evaluation_cases": 20,
+    "completed_cases": 1,
+    "service_unavailable_cases": 0,
+    "successful_completion_rate": 5.0,
+    "tool_selection_accuracy": 100.0,
+    "required_tool_usage_rate": 100.0,
+    "unexpected_tool_rate": 0.0,
+    "numeric_fact_match_rate": 100.0,
+    "average_tool_calls": 1.0,
+    "average_execution_time_ms": 4257.89
+  },
+  "category_counts": {
+    "capability": 1,
+    "inventory_detail": 1,
+    "inventory_summary": 1,
+    "low_stock": 1,
+    "multi_tool": 3,
+    "period_comparison": 1,
+    "product_sales": 1,
+    "reorder": 2,
+    "sales_summary": 3,
+    "supplier_lookup": 1,
+    "supplier_summary": 1,
+    "top_products": 2,
+    "unsupported": 2
+  },
+  "cases": [
+    {
+      "id": "EVAL-001",
+      "category": "sales_summary",
+      "status": "upstream_failure",
+      "tools_used": [],
+      "expected_tools": [
+        "get_sales_summary"
+      ],
+      "attempts": 2
+    },
+    {
+      "id": "EVAL-002",
+      "category": "sales_summary",
+      "status": "completed",
+      "tools_used": [
+        "get_sales_summary"
+      ],
+      "expected_tools": [
+        "get_sales_summary"
+      ],
+      "tool_selection_correct": true,
+      "required_tool_used": true,
+      "unexpected_tool": false,
+      "numeric_facts_matched": true,
+      "tool_call_count": 1,
+      "execution_time_ms": 4257.89,
+      "attempts": 1
+    },
+    {
+      "id": "EVAL-003",
+      "category": "sales_summary",
+      "status": "upstream_failure",
+      "tools_used": [],
+      "expected_tools": [
+        "get_sales_summary"
+      ],
+      "attempts": 1
+    },
+    {
+      "id": "EVAL-004",
+      "category": "top_products",
+      "status": "upstream_failure",
+      "tools_used": [],
+      "expected_tools": [
+        "get_top_products"
+      ],
+      "attempts": 1
+    },
+    {
+      "id": "EVAL-005",
+      "category": "top_products",
+      "status": "upstream_failure",
+      "tools_used": [],
+      "expected_tools": [
+        "get_top_products"
+      ],
+      "attempts": 2
+    },
+    {
+      "id": "EVAL-006",
+      "category": "period_comparison",
+      "status": "upstream_failure",
+      "tools_used": [],
+      "expected_tools": [
+        "compare_sales_periods"
+      ],
+      "attempts": 1
+    },
+    {
+      "id": "EVAL-007",
+      "category": "product_sales",
+      "status": "upstream_failure",
+      "tools_used": [],
+      "expected_tools": [
+        "get_product_sales"
+      ],
+      "attempts": 1
+    },
+    {
+      "id": "EVAL-008",
+      "category": "inventory_summary",
+      "status": "upstream_failure",
+      "tools_used": [],
+      "expected_tools": [
+        "get_inventory_summary"
+      ],
+      "attempts": 1
+    },
+    {
+      "id": "EVAL-009",
+      "category": "low_stock",
+      "status": "upstream_failure",
+      "tools_used": [],
+      "expected_tools": [
+        "get_low_stock_products"
+      ],
+      "attempts": 1
+    },
+    {
+      "id": "EVAL-010",
+      "category": "inventory_detail",
+      "status": "upstream_failure",
+      "tools_used": [],
+      "expected_tools": [
+        "get_inventory_status"
+      ],
+      "attempts": 1
+    },
+    {
+      "id": "EVAL-011",
+      "category": "supplier_lookup",
+      "status": "upstream_failure",
+      "tools_used": [],
+      "expected_tools": [
+        "get_supplier_information"
+      ],
+      "attempts": 1
+    },
+    {
+      "id": "EVAL-012",
+      "category": "supplier_summary",
+      "status": "upstream_failure",
+      "tools_used": [],
+      "expected_tools": [
+        "get_suppliers_summary"
+      ],
+      "attempts": 1
+    },
+    {
+      "id": "EVAL-013",
+      "category": "reorder",
+      "status": "upstream_failure",
+      "tools_used": [],
+      "expected_tools": [
+        "get_reorder_recommendations"
+      ],
+      "attempts": 1
+    },
+    {
+      "id": "EVAL-014",
+      "category": "reorder",
+      "status": "upstream_failure",
+      "tools_used": [],
+      "expected_tools": [
+        "get_reorder_recommendations"
+      ],
+      "attempts": 1
+    },
+    {
+      "id": "EVAL-015",
+      "category": "multi_tool",
+      "status": "upstream_failure",
+      "tools_used": [],
+      "expected_tools": [
+        "get_sales_summary",
+        "get_inventory_summary"
+      ],
+      "attempts": 1
+    },
+    {
+      "id": "EVAL-016",
+      "category": "multi_tool",
+      "status": "upstream_failure",
+      "tools_used": [],
+      "expected_tools": [
+        "get_top_products",
+        "get_reorder_recommendations"
+      ],
+      "attempts": 1
+    },
+    {
+      "id": "EVAL-017",
+      "category": "multi_tool",
+      "status": "upstream_failure",
+      "tools_used": [],
+      "expected_tools": [
+        "get_low_stock_products",
+        "get_suppliers_summary"
+      ],
+      "attempts": 1
+    },
+    {
+      "id": "EVAL-018",
+      "category": "capability",
+      "status": "upstream_failure",
+      "tools_used": [],
+      "expected_tools": [],
+      "attempts": 1
+    },
+    {
+      "id": "EVAL-019",
+      "category": "unsupported",
+      "status": "upstream_failure",
+      "tools_used": [],
+      "expected_tools": [],
+      "attempts": 1
+    },
+    {
+      "id": "EVAL-020",
+      "category": "unsupported",
+      "status": "upstream_failure",
+      "tools_used": [],
+      "expected_tools": [],
+      "attempts": 1
+    }
+  ]
+}

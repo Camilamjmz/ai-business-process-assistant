@@ -1,0 +1,41 @@
+product_id,product_name,category,current_stock,reorder_level,supplier_id
+PRD-001,Notebook Standard,Office Supplies,12,41,SUP-001
+PRD-002,Pen Set Standard,Office Supplies,77,79,SUP-002
+PRD-003,Desk Organizer Standard,Office Supplies,0,40,SUP-003
+PRD-004,Paper Ream Standard,Office Supplies,7,24,SUP-004
+PRD-005,File Folder Standard,Office Supplies,20,23,SUP-005
+PRD-006,Notebook Plus,Office Supplies,23,76,SUP-006
+PRD-007,Pen Set Plus,Office Supplies,38,57,SUP-007
+PRD-008,Desk Organizer Plus,Office Supplies,77,29,SUP-008
+PRD-009,Paper Ream Plus,Office Supplies,152,59,SUP-009
+PRD-010,File Folder Plus,Office Supplies,85,56,SUP-010
+PRD-011,Keyboard Standard,Technology,109,47,SUP-001
+PRD-012,Mouse Standard,Technology,69,78,SUP-002
+PRD-013,Webcam Standard,Technology,20,23,SUP-003
+PRD-014,USB Hub Standard,Technology,99,54,SUP-004
+PRD-015,Headset Standard,Technology,97,52,SUP-005
+PRD-016,Keyboard Plus,Technology,58,20,SUP-006
+PRD-017,Mouse Plus,Technology,40,50,SUP-007
+PRD-018,Webcam Plus,Technology,48,62,SUP-008
+PRD-019,USB Hub Plus,Technology,129,55,SUP-009
+PRD-020,Headset Plus,Technology,34,66,SUP-010
+PRD-021,Task Chair Standard,Furniture,166,78,SUP-001
+PRD-022,Standing Desk Standard,Furniture,78,33,SUP-002
+PRD-023,Desk Lamp Standard,Furniture,106,61,SUP-003
+PRD-024,Monitor Stand Standard,Furniture,135,77,SUP-004
+PRD-025,Bookshelf Standard,Furniture,5,75,SUP-005
+PRD-026,Task Chair Plus,Furniture,15,75,SUP-006
+PRD-027,Standing Desk Plus,Furniture,24,26,SUP-007
+PRD-028,Desk Lamp Plus,Furniture,108,49,SUP-008
+PRD-029,Monitor Stand Plus,Furniture,161,56,SUP-009
+PRD-030,Bookshelf Plus,Furniture,76,39,SUP-010
+PRD-031,Label Roll Standard,Operations,40,21,SUP-001
+PRD-032,Packing Tape Standard,Operations,74,31,SUP-002
+PRD-033,Storage Bin Standard,Operations,73,55,SUP-003
+PRD-034,Safety Gloves Standard,Operations,116,53,SUP-004
+PRD-035,Shipping Box Standard,Operations,101,39,SUP-005
+PRD-036,Label Roll Plus,Operations,62,33,SUP-006
+PRD-037,Packing Tape Plus,Operations,90,41,SUP-007
+PRD-038,Storage Bin Plus,Operations,89,71,SUP-008
+PRD-039,Safety Gloves Plus,Operations,31,60,SUP-009
+PRD-040,Shipping Box Plus,Operations,137,51,SUP-010
